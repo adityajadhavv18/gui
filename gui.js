@@ -149,7 +149,7 @@ problem.testFiles.forEach(file => {
 
   const subNav = document.querySelector(".sub-nav");
   subNav.style.position = "relative";
-  subNav.style.top = "-66px";
+  subNav.style.top = "-62px";
 
 }
 
