@@ -1,55 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Byte Hard</title>
-  <link rel="stylesheet" href="gui.css">
-</head>
-<body>
-
-  <div class="container">
-    <div class="sidebar">
-      <div class="header">
-        <img src="images/Group 11.png" alt="Byte Hard Logo" class="logo" />
-        <a href="gui.html"> <!-- Use the correct filename if different -->
-          <h1>Byte Hard</h1>
-        </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Byte Hard</title>
+    <link rel="stylesheet" href="gui.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="header">
+          <img src="images/Group 11.png" alt="Byte Hard Logo" class="logo" />
+          <a href="gui.html">
+            <!-- Use the correct filename if different -->
+            <h1>Byte Hard</h1>
+          </a>
+        </div>
+        <ul id="problem-list"></ul>
       </div>
-      <ul id="problem-list">
-        <li onclick="selectProblem(1)">Commit one</li>
-        <li onclick="selectProblem(2)">Commit two</li>
-        <li onclick="selectProblem(3)">Commit three</li>
-      </ul>
 
-    </div>
+      <div class="content">
+        <div class="nav-bar">
+          <p>Commit ID: <span id="commit-message"></span></p>
+          <div class="sub-nav">
+            <a href="">
+              <!-- Use the correct filename if different -->
+              <p>Help guides</p>
+            </a>
+            <a href="">
+              <!-- Use the correct filename if different -->
+              <button>Download File</button>
+            </a>
+          </div>
+        </div>
+        <h2 id="commit-message">Select A Commit To View Details</h2>
+        <div class="changed-files">
+          <h3>Files Changed</h3>
+          <ul id="files-changed"></ul>
+        </div>
 
-    <div class="content">
-      <div class="nav-bar">
-        <p id="commit-message"></p>
-        <div class="sub-nav">
-          <a href=""> <!-- Use the correct filename if different -->
-            <p> Help guides</p>
-          </a>
-          <a href=""> <!-- Use the correct filename if different -->
-            <button>Download File</button>
-          </a>
-          
+        <div class="test-files">
+          <h3>Test Files Detected</h3>
+          <ul id="test-files"></ul>
         </div>
       </div>
-      <h2 id="commit-message">Select A Commit To View Details</h2>
-      <div class="changed-files">
-        <h3>Files Changed</h3>
-      <ul id="files-changed"></ul>
-      </div>
-      
-      <div class="test-files">
-      <h3>Test Files Detected</h3>
-      <ul id="test-files"></ul>
     </div>
-    </div>
-  </div>
 
-  <script src="gui.js"></script>
-</body>
+    <script src="gui.js"></script>
+  </body>
 </html>

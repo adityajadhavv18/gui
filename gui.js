@@ -1,136 +1,127 @@
-const problems = {
-  1: {
-    commitMessage: "Commit 1",
-    changedFiles: [
-      "src/two_sum.js",
-      "src/utils.js",
-      "src/helpers.js",
-      "src/data_structures.js",
-      "src/array_operations.js",
-      "src/index.html",
-      "src/styles.css",
-      "src/config.json",
-      "src/package.json",
-      "src/README.md"
-    ],
-    testFiles: [
-      "tests/two_sum.test.js",
-      "tests/utils.test.js",
-      "tests/helpers.test.js"
-    ]
-  },
-  2: {
-    commitMessage: "Commit 2",
-    changedFiles: [
-      "src/reverse_integer.js",
-      "src/utils.js",
-      "src/error_handling.js",
-      "src/logger.js",
-      "src/reverse_integer_service.js",
-      "src/styles.css",
-      "src/manifest.json",
-      "src/index.html",
-      "src/package-lock.json",
-      "src/.env"
-    ],
-    testFiles: [
-      "tests/reverse_integer.test.js",
-      "tests/error_handling.test.js",
-      "tests/logger.test.js"
-    ]
-  },
-  3: {
-    commitMessage: "Commit 3",
-    changedFiles: [
-      "src/palindrome_number.js",
-      "src/utils.js",
-      "src/data_parser.js",
-      "src/data_structures.js",
-      "src/app.js",
-      "src/routes.js",
-      "src/server.js",
-      "src/index.html",
-      "src/styles.css",
-      "src/Dockerfile"
-    ],
-    testFiles: [
-      "tests/palindrome_number.test.js",
-      "tests/data_parser.test.js",
-      "tests/server.test.js"
-    ]
+const baseURL = "http://127.0.0.1:8000"; // Base URL for API
+
+// Fetch all commits from the API
+async function fetchCommits() {
+  try {
+    const response = await fetch(`${baseURL}/commits`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching commits:", error);
   }
-};
+}
 
-// Dummy content generator for files
-const dummyFileContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat orci ut nulla placerat, nec cursus orci rhoncus. Etiam sed erat urna.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin vel ligula dui. 
-Duis fringilla vel nisl a blandit. Vivamus mollis efficitur purus, non lacinia purus facilisis sed.`.repeat(10);
+// Fetch changed files for a specific commit by its SHA
+async function fetchChangedFiles(commitSha) {
+  try {
+    const response = await fetch(
+      `${baseURL}/changed-files/?commit_sha=${commitSha}`
+    );
+    const data = await response.json();
+    return data.changed_files;
+  } catch (error) {
+    console.error("Error fetching changed files:", error);
+  }
+}
 
-// Function to display the selected problem's commit details
-function selectProblem(problemId) {
-  const problem = problems[problemId];
-  
-  // Update commit message
-  document.getElementById("commit-message").innerText = problem.commitMessage;
+// Call the process-changed-files API
+async function processChangedFiles(changedFiles) {
+  try {
+    const response = await fetch(`${baseURL}/process-changed-files/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ changed_files: changedFiles }),
+    });
+    const data = await response.json();
 
-  // Display changed files
-  const filesChangedList = document.getElementById("files-changed");
-  filesChangedList.innerHTML = ""; // Clear previous entries
-  
-  problem.changedFiles.forEach(file => {
+    return data;
+  } catch (error) {
+    console.error("Error processing changed files:", error);
+  }
+}
+
+// Display commits on the sidebar
+async function displayCommits() {
+  const commits = await fetchCommits();
+  const commitList = document.getElementById("problem-list");
+  commitList.innerHTML = ""; // Clear existing items
+
+  commits.forEach((commit, index) => {
     const listItem = document.createElement("li");
-    listItem.innerText = file;
-    listItem.onclick = () => previewFile(listItem, file);
-    filesChangedList.appendChild(listItem);
+    listItem.innerText = commit.commit_message;
+    listItem.onclick = () =>
+      selectCommit(commit.commit_id, commit.commit_message);
+    commitList.appendChild(listItem);
   });
+}
 
-  // Display test files
+// Select and display a commit's details
+async function selectCommit(commitId, commitMessage) {
+  // Update commit message
+  document.getElementById("commit-message").innerText = commitId;
+
+  // Fetch and display changed files
+  const changedFiles = await fetchChangedFiles(commitId);
+  displayFiles(changedFiles, "files-changed");
+
+  // Process the changed files and update the view with test files
+  const processedData = await processChangedFiles(changedFiles);
+  if (processedData) {
+    displayProcessedFiles(processedData);
+  }
+}
+
+function displayProcessedFiles(processedData) {
   const testFilesList = document.getElementById("test-files");
   testFilesList.innerHTML = ""; // Clear previous entries
-  problem.testFiles.forEach(file => {
+
+  processedData.forEach((file) => {
     const listItem = document.createElement("li");
-    listItem.innerText = file;
-    listItem.onclick = () => previewFile(listItem, file);
+    listItem.innerText = file.test_file_path;
+    listItem.onclick = () =>
+      previewFile(listItem, file.test_file_path, file.test_file_content);
     testFilesList.appendChild(listItem);
   });
-
   const subNav = document.querySelector(".sub-nav");
   subNav.style.position = "relative";
-  subNav.style.top = "-66px";
+  subNav.style.top = "-30px";
+}
 
+// Helper function to display files in a given section
+function displayFiles(files, elementId) {
+  const filesList = document.getElementById(elementId);
+  filesList.innerHTML = ""; // Clear previous entries
+
+  for (const [fileName, fileDetails] of Object.entries(files)) {
+    const listItem = document.createElement("li");
+    listItem.innerText = fileName;
+    listItem.onclick = () =>
+      previewFile(listItem, fileName, fileDetails.file_content);
+    filesList.appendChild(listItem);
+  }
 }
 
 // Function to display file content preview
-function previewFile(listItem, fileName) {
-  // Check if the preview box already exists
+function previewFile(listItem, fileName, fileContent) {
   const existingPreview = listItem.querySelector(".preview-box");
-  
+
   if (existingPreview) {
-    // If the preview box is already there, remove it (close the preview)
-    existingPreview.remove();
+    existingPreview.remove(); // Close the preview if it already exists
   } else {
-    // If there is no preview, create one
     const previewBox = document.createElement("div");
     previewBox.classList.add("preview-box");
 
-    // Add the file name as a heading
-    // const previewHeading = document.createElement("h3");
-    // previewHeading.innerText = "Preview\n" + fileName; // Updated line to put file name on next line
-    // previewBox.appendChild(previewHeading);
+    const fileContentElement = document.createElement("pre");
+    fileContentElement.innerText = fileContent || "No content available"; // Display file content or fallback message
+    fileContentElement.style.maxHeight = "300px"; // Set max height for the preview box
+    fileContentElement.style.overflowY = "scroll"; // Make it scrollable if content is long
+    previewBox.appendChild(fileContentElement);
 
-    // Add the file content
-    const fileContent = document.createElement("pre");
-    fileContent.innerText = dummyFileContent;
-    fileContent.style.maxHeight = "300px"; // Set the height of the preview box
-    fileContent.style.overflowY = "scroll"; // Make the content scrollable
-    previewBox.appendChild(fileContent);
-
-    // Insert the preview box directly after the clicked file item
-    listItem.appendChild(previewBox);
+    listItem.appendChild(previewBox); // Append preview box to the list item
   }
 }
 
-
-  
-  
+// Initialize and load commits when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  displayCommits();
+});

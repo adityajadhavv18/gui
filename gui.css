@@ -1,197 +1,194 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-  }
-  .header {
-    display: flex; 
-    align-items: center; 
-    padding-top: 35px;
-  }
-  .header h1{
-    font-size: 25px;
-    font-weight: bold;
-    padding-left: 10px;
-  }
-  .header a {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit color from parent */
-    transition: all 0.3s; /* Smooth transition for all properties */
-  }
-  
-  .header a:hover {
-    color: #2980b9; /* Change color on hover */
-    /* Add underline on hover */
-  }
-
-  .logo {
-    width: 45px; /* Adjust size as needed */
-    height: 45px; /* Adjust size as needed */
-    border-radius: 50%; /* Round shape */
-    margin-right: 10px; /* Space between logo and text */
-  }
-  .container {
-    display: flex;
-    height: 100vh; /* Keep the overall height fixed */
-  }
-  
-  .sidebar {
-    width: 350px;
-    background-color: #220646;
-    color: #fff;
-    padding: 20px;
-    overflow-y: auto; /* Allow vertical scrolling if content exceeds the height */
-  }
-  
-  .sidebar h2 {
-    margin-bottom: 20px;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    margin-top: 30px;
-    margin-left: 3.5rem;
-    line-height: 2.5;
-  }
-  
-  .sidebar ul li {
-    padding: 10px;
-    background-color: #220646;
-    margin-bottom: 10px;
-    cursor: pointer;
-    font-weight: 550;
-    transition: background-color 0.3s;
-  }
-  
-  .sidebar ul li:hover {
-    background-color: #555;
-  }
-  .content h3{
-    padding-bottom: 15px;
-  }
-  .content {
-    width: 76%;
-    padding: 20px;
-    padding-top: 20px;
-    background-color: #a0aec0;
-    overflow-y: auto; /* Allow vertical scrolling if content exceeds the height */
-    background:   rgb(234, 234, 237); 
-  }
-  .nav-bar{
-    background-color: #ffffff; /* White background or any other color */
-    padding: 20px; /* Padding for some spacing inside the div */
-    height: 80px; /* Center the text */
-    margin-bottom: 30px;
-    font-size: 20px; /* Adjust font size */
-    border-radius: 8px; /* Rounded corners for a smoother look */
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), /* Darker shadow for depth */
-                -5px -5px 15px rgba(255, 255, 255, 0.1); /* Lighter shadow on opposite side */
-    transition: box-shadow 0.3s ease;
-  }
-  .nav-bar:hover {
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5), /* Darker shadow on hover */
-                -5px -5px 20px rgba(255, 255, 255, 0.2); /* More pronounced lighter shadow */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-  
-  .nav-bar p{
-    padding-top: 10px;
-    color: #000;
-    font-size: 24px;
-    font-weight: 600;
-    font-family: 'Roboto', sans-serif;
-  }
-  .sub-nav{
-    display: flex;
-    padding-left: 46rem;
-    position:absolute;
-    top:40px;
-  }
 
-  .sub-nav a{
-    text-decoration: none;
-  }
-.sub-nav button{
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+}
+.header {
+  display: flex;
+  align-items: center;
+  padding-top: 35px;
+}
+.header h1 {
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.header a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent */
+  transition: all 0.3s; /* Smooth transition for all properties */
+}
+
+.header a:hover {
+  color: #2980b9; /* Change color on hover */
+  /* Add underline on hover */
+}
+
+.logo {
+  width: 45px; /* Adjust size as needed */
+  height: 45px; /* Adjust size as needed */
+  border-radius: 50%; /* Round shape */
+  margin-right: 10px; /* Space between logo and text */
+}
+.container {
+  display: flex;
+  height: 100vh; /* Keep the overall height fixed */
+}
+
+.sidebar {
+  width: 350px;
+  background-color: #220646;
+  color: #fff;
+  padding: 20px;
+  overflow-y: auto; /* Allow vertical scrolling if content exceeds the height */
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin-top: 30px;
+  margin-left: 0.5rem;
+  line-height: 1.2;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  background-color: #220646;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-weight: 550;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background-color: #555;
+}
+.content h3 {
+  padding-bottom: 15px;
+}
+.content {
+  width: 76%;
+  padding: 20px;
+  padding-top: 20px;
+  background-color: #a0aec0;
+  overflow-y: auto; /* Allow vertical scrolling if content exceeds the height */
+  background: rgb(234, 234, 237);
+}
+.nav-bar {
+  background-color: #ffffff; /* White background or any other color */
+  padding: 20px; /* Padding for some spacing inside the div */
+  height: 80px; /* Center the text */
+  margin-bottom: 30px;
+  font-size: 20px; /* Adjust font size */
+  border-radius: 8px; /* Rounded corners for a smoother look */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+    /* Darker shadow for depth */ -5px -5px 15px rgba(255, 255, 255, 0.1); /* Lighter shadow on opposite side */
+  transition: box-shadow 0.3s ease;
+}
+.nav-bar:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5),
+    /* Darker shadow on hover */ -5px -5px 20px rgba(255, 255, 255, 0.2); /* More pronounced lighter shadow */
+}
+
+.nav-bar p {
+  padding-top: 10px;
+  color: #000;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+}
+.sub-nav {
+  display: flex;
+  padding-left: 46rem;
+  position: absolute;
+  top: 40px;
+}
+
+.sub-nav a {
+  text-decoration: none;
+}
+.sub-nav button {
   padding: 5px;
   background-color: #3d0883;
   border-radius: 4px;
   color: #e2e8f0;
   border: 5px solid #3d0883;
 }
-  .sub-nav p{
-    font-size: 12px;
-    color: #4a5568;
-    padding-right: 30px;
-  }
+.sub-nav p {
+  font-size: 12px;
+  color: #4a5568;
+  padding-right: 30px;
+}
 
-  #commit-message {
-    margin-bottom: 29px;
-    
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-bottom: 20px;
-  }
-  
-  ul li {
-    padding: 10px;
-    background-color: rgb(255, 255, 255);
-    margin-bottom: 2px;
-    border-radius: 4px;
-    cursor: pointer;
-    
-  }
-  
-  ul li:hover {
-    background-color: #dcdcdc;
-  }
-  
-  /* Preview Box Style */
-  .preview-box {
-    margin-top: 10px;
-    max-width: 1200px;
-    height: 300px;
-    overflow-y: scroll; /* Keep scrollable for long content */
-    background-color: rgb(7, 7, 49);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color:#ffffff;
-  }
-  
-  .preview-box h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  
-  .preview-box pre {
-    white-space: pre-wrap;
-    font-family: monospace;
-    margin: 0;
-  }
-  .changed-files{
-    background-color: #edf2f7;
-  }
-  .changed-files h3{
-    text-align: center;
-    padding-top: 15px;
-  }
+#commit-message {
+  margin-bottom: 29px;
+  font-weight: 200;
+  font-size: 20px;
+}
 
-  .test-files{
-    margin-top: 20px;
-    background-color:#edf2f7 ;
-    padding-top: 15px;
-  }
+ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
 
-  .test-files h3{
-    text-align: center;
-  }
+ul li {
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  
+ul li:hover {
+  background-color: #dcdcdc;
+}
+
+/* Preview Box Style */
+.preview-box {
+  margin-top: 10px;
+  max-width: 1200px;
+  height: 300px;
+  overflow-y: scroll; /* Keep scrollable for long content */
+  background-color: rgb(7, 7, 49);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.preview-box h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.preview-box pre {
+  white-space: pre-wrap;
+  font-family: monospace;
+  margin: 0;
+}
+.changed-files {
+  background-color: #edf2f7;
+}
+.changed-files h3 {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.test-files {
+  margin-top: 20px;
+  background-color: #edf2f7;
+  padding-top: 15px;
+}
+
+.test-files h3 {
+  text-align: center;
+}
